@@ -1,3 +1,4 @@
+```yaml
 name: Build Android APK
 
 on:
@@ -24,7 +25,9 @@ jobs:
           gradle-version: '8.7'
 
       - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v4
+        with:
+          packages: 'platform-tools'
 
       - name: Install Android SDK
         run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
@@ -37,3 +40,4 @@ jobs:
         with:
           name: NOTE-Samsung-APK
           path: app/build/outputs/apk/debug/app-debug.apk
+```

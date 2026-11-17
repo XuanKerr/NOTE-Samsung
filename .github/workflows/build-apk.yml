@@ -25,10 +25,12 @@ jobs:
           gradle-version: '8.7'
 
       - name: Install Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install SDK packages
         run: |
-          sdkmanager --version
-          yes | sdkmanager --licenses || true
-          sdkmanager --install "platforms;android-35" "build-tools;35.0.0"
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-35" "build-tools;35.0.0"
 
       - name: Build APK
         run: gradle assembleDebug
